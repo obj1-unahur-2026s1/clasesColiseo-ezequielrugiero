@@ -1,3 +1,4 @@
+import gladiadores.*
 class ArmaDeFilo{
   var filo
   var longitud
@@ -19,9 +20,6 @@ class ArmaDeFilo{
       longitud = unaLogitud
   }
 
-  method cambiarDeArma(unArma){
-    tipoDeArma=unArma
-  }
 
 }
 
@@ -37,26 +35,55 @@ class ArmaContudentes {
   method valorDeAtaque(){
     return peso
   }
-  method cambiarDeArma(unArma){
-    tipoDeArma=unArma
-  }
+
 
 }
 
 object casco {
-  const defesa = 10
+  const defenza = 10
 
-  method defesa()= defesa
+  method aumentarDefenzaA(unGladiador){
+     return unGladiador.defenza() + defenza
+  }
   
-  method aumentarDefesaDe(unGladidor){
-    return unGladidor.defesa()= unGladidor.defesa() + 10
+  
+}
+
+object escudo{
+  method aumentarDestresaDe(unGladiador){
+    return  5 + (unGladiador.destresa()* 0.10) + unGladiador.destresa()
 
   }
 }
 
-object escudo{
-  method aumentarDestresaDe(unGladidor){
-    return unGladidor.destresa()= 5 + (unGladidor.destresa()* 0.10)
+class Grupos {
+  const grupos = #{}
+  var nombre
+  var cantidadPeleas = 0 
 
+  method cantidadPeleas()=cantidadPeleas
+  method nombre()=nombre
+
+  method agregarA(unGladiador){
+    grupos.add(unGladiador)
   }
+  method sacarA(unGladiador){
+    grupos.remove(unGladiador)
+  }
+
+  method campeon(){
+     var campeon = grupos.max({g=>g.poderDeAtaque()})
+     if(campeon.vida() > 0){
+         return  campeon
+      } else {return grupos.sacarA(campeon)}
+    
+  }
+
+  method combates(groupoUno, grupoDos){
+    groupoUno.campeon().atacarA(grupoDos.campeon())
+    groupoUno.campeon().atacarA(grupoDos.campeon())
+    groupoUno.campeon().atacarA(grupoDos.campeon())
+    cantidadPeleas =+ 1
+  }
+
 }

@@ -1,9 +1,27 @@
-import example.pepita
+import coliseo.*
+import gladiadores.*
 
-describe "group of tests for pepita" {
+describe "tes de pruevas" {
+  const espada = new ArmaDeFilo(tipoDeArma = "Espada", filo = 0.6, longitud= 7)
+  const daga = new ArmaDeFilo(tipoDeArma = "Daga", filo = 0.9, longitud= 3)
+  const hacha = new ArmaDeFilo(tipoDeArma = "Hacha", filo = 0.3, longitud= 5)
+  const maximo = new Mirmillone(fuerza = 10, defenza = 5, armaActual=espada)
+  const espartacu = new Dimachaerus(defenza = 10, armas = [espada,daga], destresa = 15)
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "los mejores gladiadores" {
+
+    assert.equals(15, maximo.destresa())
+    maximo.colocarseCasco()
+    maximo.agarrarEscudo()
+    assert.equals(10, maximo.fuerza())
+    assert.equals(15, maximo.defenza())
+    assert.equals(10, espartacu.fuerza())
+    assert.equals(21.5, maximo.destresa())
   }
 
+  test "espartacus" {
+
+   
+    assert.equals(2, espartacu.armas().size())
+  }
 }
