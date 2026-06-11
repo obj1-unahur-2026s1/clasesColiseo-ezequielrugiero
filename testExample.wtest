@@ -5,11 +5,15 @@ describe "tes de pruevas" {
   const espada = new ArmaDeFilo(tipoDeArma = "Espada", filo = 0.6, longitud= 7)
   const daga = new ArmaDeFilo(tipoDeArma = "Daga", filo = 0.9, longitud= 3)
   const hacha = new ArmaDeFilo(tipoDeArma = "Hacha", filo = 0.3, longitud= 5)
+  const martillo = new ArmaContudentes(tipoDeArma="Martillo", peso= 12.5)
+  const maza =  new ArmaContudentes(tipoDeArma="Maza", peso= 18)
   const maximo = new Mirmillone(fuerza = 10, defenza = 5, armaActual=espada)
   const espartacu = new Dimachaerus(defenza = 10, armas = [espada,daga], destresa = 15)
+  const facundo = new Mirmillone(fuerza = 15, defenza = 8, armaActual=hacha)
+  const furchi = new Mirmillone(fuerza = 16, defenza = 6, armaActual=maza)
+
 
   test "los mejores gladiadores" {
-
     assert.equals(15, maximo.destresa())
     maximo.colocarseCasco()
     maximo.agarrarEscudo()
@@ -20,8 +24,13 @@ describe "tes de pruevas" {
   }
 
   test "espartacus" {
-
-   
     assert.equals(2, espartacu.armas().size())
   }
+  test "crear grupo" {
+    
+    assert.equals(2, espartacu.armas().size())
+  }
+
+
+
 }

@@ -75,15 +75,45 @@ class Grupos {
      var campeon = grupos.max({g=>g.poderDeAtaque()})
      if(campeon.vida() > 0){
          return  campeon
-      } else {return grupos.sacarA(campeon)}
+      } else {return campeon.cura()}
     
   }
 
-  method combates(groupoUno, grupoDos){
-    groupoUno.campeon().atacarA(grupoDos.campeon())
-    groupoUno.campeon().atacarA(grupoDos.campeon())
-    groupoUno.campeon().atacarA(grupoDos.campeon())
+  method combatesCon(unGrupo){
+    self.campeon().atacarA(unGrupo.campeon())
+    self.campeon().atacarA(unGrupo.campeon())
+    self.campeon().atacarA(unGrupo.campeon())
     cantidadPeleas =+ 1
   }
+
+}
+
+object coliseo {
+  var gruposDeCombates =#{}
+
+  method gruposDeCombates()=gruposDeCombates
+  method agregarA(unGrupo){
+    gruposDeCombates.add(unGrupo)
+  }
+  method quitarA(unGrupo){
+    gruposDeCombates.remove(unGrupo)
+  }
+  method gruposQueVanACombatir(priGrupo, segGrupo){
+    priGrupo.cambatesCon(segGrupo)
+  }
+
+  method grupovsgladiador(unGrupo,unGladiador){
+    gruposDeCombates.forEach({g=>g.atacarA(unGladiador)})
+
+  }
+
+  method gladiadorHerido(gladiador){
+    gladiador.cura()
+  }
+
+  method grupoHerido(unGrupo){
+    unGrupo.forEach({g=>g.cura()})
+  }
+
 
 }
